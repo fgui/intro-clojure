@@ -33,5 +33,18 @@
   +
   hola
 
+  ;; Lists
+  ()
+  '(1 2 3)
+  ;; Vectors
+  []
+  [1 2 3]
+  ;; Maps
+  {}
+  {:key1 "value1" :key2 "value2"}
+  ;; Sets
+  #{}
+  #{1 2 3 4}
+
 
   )
