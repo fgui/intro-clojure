@@ -58,4 +58,11 @@
   (+ 1 2 3 4)
   (str "hello" " " "world")
 
+  ;; nested function evaluate
+  (inc (inc 1))
+
+  ;; using symbols
+  ;; def is a special form
+  ;; more info (doc def)
+  (def sym1 "value1")
   )
