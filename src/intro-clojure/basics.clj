@@ -2,66 +2,78 @@
 
 (comment
 
-  ; Reader Forms (form read by reader before eval)
+  ; Form: código válido clojure
 
-  ;; Literals
-  ;;; strings
+  ;; Literales - evaluan a su propio valor
+  ;;; cadenas de caracteres (strings)
   "hello world"
-  ;; characters
+  ;; caracteres
   \h
   \newline
-  ;;; numbers
-  ;;; integers
+  ;;; numeros
+  ;;; enteros
   42
   123412341234123412341234N
-  ;;; decimals
+  ;;; decimales
   42.42
   123412431234.12431243213M
-  ;;; rational
+  ;;; rationales
   3/4
-  ;;; booleans
+  ;;; booleanos
   true
   false
   ;;; nothing, null
   nil
-  ;;; keywords
+  ;;; palabras clave (keywords)
   :keyword
   :color
   :key1
 
-  ;; Symbols (identifiers)
+  ;; símbolos (symbols) identificadores
+  ;; normalmente se usan para referenciar algo
   inc
   +
   hola
 
-  ;; Lists
-  ;; "," are not used do  separate elements -> white spaces instead.
+  ;; Listas
+  ;; "," no se utilizan para separar elementos,
+  ;; usamos espacios para separar elementos
   ()
-  '(1 2 3)
-  ;; Vectors
+  ;; comentaremos quote ' más adelante
+  '(1 2 "hola" 3/4)
+
+  ;; Vectores
   []
   [1 2 3]
-  ;; Maps
+
+  ;; Mapas
   {}
   {:key1 "value1" :key2 "value2"}
+
   ;; Sets
   #{}
   #{1 2 3 4}
 
-  ; Evaluation
-  ;; every form evaluates to itself except list.
-  ;; list are evaluated as (operator operand1 operand2 ... operandn)
-  ;; An operator can be a #{function  special-form macro}
-  ;; prefix format
+  ;; Pueden ser anidadas
+  [1 2 [3 4] {:uno 1}]
+
+  ; Evaluación
+  ;; Todas las forms vistas hasta aquí evaluan a su propio valor
+  ;; excepto las Listas.
+  ;; Las listas se evalua como operaciones con el siguiente formato
+  ;; (operador param-1 param-2 ... param-n)
+  ;; Un operador puede ser #{function special-form macro}
   (inc 1)
   (+ 1 1)
   (+ 1 2 3 4)
   (str "hello" " " "world")
+  (class "hello")
+  (class 3/4)
 
-  ;; nested function evaluate
+  ;; funciones anidadas
   (inc (inc 1))
 
-  ;; using symbols
+  ;;
   ;; def is a special form
   ;; more info (doc def)
   (def sym1 "value1")
