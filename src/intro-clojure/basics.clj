@@ -1,7 +1,8 @@
 (ns intro-clojure.basics)
 
 (comment
-  ; Reader Forms
+
+  ; Reader Forms (form read by reader before eval)
 
   ;; Literals
   ;;; strings
@@ -34,6 +35,7 @@
   hola
 
   ;; Lists
+  ;; "," are not used do  separate elements -> white spaces instead.
   ()
   '(1 2 3)
   ;; Vectors
@@ -46,5 +48,14 @@
   #{}
   #{1 2 3 4}
 
+  ; Evaluation
+  ;; every form evaluates to itself except list.
+  ;; list are evaluated as (operator operand1 operand2 ... operandn)
+  ;; An operator can be a #{function  special-form macro}
+  ;; prefix format
+  (inc 1)
+  (+ 1 1)
+  (+ 1 2 3 4)
+  (str "hello" " " "world")
 
   )
