@@ -65,4 +65,23 @@
   ;; def is a special form
   ;; more info (doc def)
   (def sym1 "value1")
+
+  ;; functions
+  ;; fn is a special form
+  ;; more info (doc fn)
+  (fn [x] (+ 1 x))
+  ((fn [x] (+ 1 x)) 3)
+
+  ;; name a function
+  ;; use a symbol to refer to function
+  (def my-inc (fn [x] (+ x 1)))
+  my-inc
+  (my-inc 1)
+
+  ;; there is a macro to create a function and give it a name.
+  ;; (doc defn)
+  (defn my-inc2 [x] (+ x 1))
+  (macroexpand '(defn my-inc2 [x] (+ x 1)))
+
+
   )
