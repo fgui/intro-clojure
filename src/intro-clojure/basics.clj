@@ -28,5 +28,10 @@
   :color
   :key1
 
+  ;; Symbols (identifiers)
+  inc
+  +
+  hola
+
 
   )
