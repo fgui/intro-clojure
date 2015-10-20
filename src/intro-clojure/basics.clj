@@ -2,67 +2,99 @@
 
 (comment
 
-  ; Form: código válido clojure
 
-  ;; Literales - evaluan a su propio valor
-  ;;; cadenas de caracteres (strings)
+  ; Form
+  ; Reader Forms (form read by reader before eval)
+
+  ;; Literals
+  ;;; strings
   "hello world"
-  ;; caracteres
+  ;; characters
   \h
   \newline
-  ;;; numeros
-  ;;; enteros
+  ;;; numbers
+  ;;; integers
   42
   123412341234123412341234N
-  ;;; decimales
+  ;;; decimals
   42.42
   123412431234.12431243213M
-  ;;; rationales
+  ;;; rational
   3/4
-  ;;; booleanos
+  ;;; booleans
   true
   false
   ;;; nothing, null
   nil
-  ;;; palabras clave (keywords)
+  ;;; keywords
   :keyword
   :color
   :key1
 
-  ;; símbolos (symbols) identificadores
-  ;; normalmente se usan para referenciar algo
+  ;; Symbols (identifiers)
   inc
   +
   hola
 
-  ;; Listas
-  ;; "," no se utilizan para separar elementos,
-  ;; usamos espacios para separar elementos
+  ;; Lists
+  ;; "," are not used do  separate elements -> white spaces instead.
   ()
-  ;; comentaremos quote ' más adelante
-  '(1 2 "hola" 3/4)
-
-  ;; Vectores
+  '(1 2 3)
+  ;; Vectors
   []
   [1 2 3]
-
-  ;; Mapas
+  [1 "hello" 1/4]
+  ;; Maps
   {}
   {:key1 "value1" :key2 "value2"}
-
   ;; Sets
   #{}
   #{1 2 3 4}
 
-  ;; Pueden ser anidadas
-  [1 2 [3 4] {:uno 1}]
+  ;; they can be nested
+  [1 2 [3 4] {:one 1}]
 
-  ; Evaluación
-  ;; Todas las forms vistas hasta aquí evaluan a su propio valor
-  ;; excepto las Listas.
-  ;; Las listas se evalua como operaciones con el siguiente formato
-  ;; (operador param-1 param-2 ... param-n)
-  ;; Un operador puede ser #{function special-form macro}
+
+  ; Evaluation
+  ;; every form evaluates to itself except list.
+  ;; list are evaluated as (operator operand1 operand2 ... operandn)
+  ;; An operator can be a #{function  special-form macro}
+  ;; prefix format
+
+  ;;error not a operator -> quote to stop evaluation
+  (1 2 3)
+
+  (inc 1)
+  (+ 1 1)
+  (+ 1 2 3 4)
+  (str "hello" " " "world")
+  (class "hello")
+  (class 3/4)
+
+  ;; nested function evaluate
+  (inc (inc 1))
+
+  ;; using symbols
+  ;; def is a special form
+  ;; more info (doc def)
+  (def sym1 "value1")
+
+  ;; functions
+  ;; fn is a special form
+  ;; more info (doc fn)
+  (fn [x] (+ 1 x))
+  ((fn [x] (+ 1 x)) 3)
+
+  ;; name a function
+  ;; use a symbol to refer to function
+  (def my-inc (fn [x] (+ x 1)))
+  my-inc
+  (my-inc 1)
+
+  ;; there is a macro to create a function and give it a name.
+  ;; (doc defn)
+  (defn my-inc2 [x] (+ x 1))
+  (macroexpand '(defn my-inc2 [x] (+ x 1)))
 
   ;; error si no lo es
   (1 2 3)
@@ -71,8 +103,6 @@
   (+ 1 1)
   (+ 1 2 3 4)
   (str "hello" " " "world")
-  (class "hello")
-  (class 3/4)
 
   ;; funciones anidadas
   (inc (inc 1))
@@ -106,62 +136,65 @@
   ((+ 1 1) (+ 2 3))
   (do (+ 1 1) (+ 2 3))
   ;; side effects
-  (do (println "hola")
-      (println "adios"))
+  (do (println "hello")
+      (println "bye"))
 
-  ;; control de flujo
+
+  ;; flow control
   ;; if special form
   (if true "t" "f")
-  ;; nil es falso
+  ;; nil is false
   (if nil "t" "f")
-  ;; todo lo demás es cierto
-  (if "anything else" "t" "f")
-  ;; incluso lista vacia!
+  ;; false and nil are false, anything else true
+  (if "everything else" "t" "f")
+  ;; even the empty collection (list, vector, map...) is true!
   (if [] "t" "f")
 
-  ;; otras macros para control de flujo sobre if
+  ;; other macros for flow control
   ;; when
   ;; cond
   ;; etc
 
+  ;; loops in clojure
   ;; loop/recur Special forms
-  ;; los "bucles" en clojure se hacen con recursividad o hof.
-  ;; tiene que ser tail recursive
+  ;; tail recusive
    (loop [x 10 fact 1]
     (if (zero? x) fact
         (recur (dec x) (* x fact)))
     )
 
   ;; fn
-  ;; funciones
-  ;; fn también es una forma especial.
+  ;; functions
+  ;; fn is a forma especial.
   ;; more info (doc fn)
   (fn [x] (+ 1 x))
-  ;; usar una función anonima
+  ;; we can use the function we just defined
   ((fn [x] (+ 1 x)) 3)
 
-  ;; nombrar una función
-  ;; (aka crear un simbolo que referencia la función)
+  ;; giving a name to a function
+  ;; we use a symbol to refer to it.
   (def my-inc (fn [x] (+ x 1)))
   my-inc
   (my-inc 1)
 
-  ;; Tenemos una macro para crear funciones referenciadas
-  ;; por simbolos.
+  ;; There is a macro to create named functions
   ;; (doc defn)
   (defn my-inc2 [x] (+ x 1))
   (macroexpand '(defn my-inc2 [x] (+ x 1)))
 
-  ;; podemos llamar funciones
-  ;; recursivamente non-tail
+  ;; once we name a function we could call it again.
   (defn fact [x]
     (if (zero? x) 1
         (* x (fact (dec x)))))
   (fact 10)
+  ;; it's possible to name anomimous functions as well
+  ;; normally to call themselves
+  ((fn fact [x]
+     (if (zero? x) 1
+         (* x (fact (dec x))))) 10)
 
-  ;; llamar recur sin loop
-  ;; para llamar a recursivamente a función en posición tail
-  ;; llama a la función
+  ;; we can call recur without a loop
+  ;; it will call the function we are in.
   (defn fact[x acc]
     (if (zero? x) acc
         (recur (dec x) (* x acc)))
