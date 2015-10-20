@@ -62,6 +62,7 @@
   ;; prefix format
 
   ;;error not a operator -> quote to stop evaluation
+  ;;??? should we talk about quote (quote (1 2 3)) '(1 2 3)
   (1 2 3)
 
   (inc 1)
@@ -160,8 +161,7 @@
   ;; tail recusive
    (loop [x 10 fact 1]
     (if (zero? x) fact
-        (recur (dec x) (* x fact)))
-    )
+        (recur (dec x) (* x fact))))
 
   ;; fn
   ;; functions
@@ -197,9 +197,35 @@
   ;; it will call the function we are in.
   (defn fact[x acc]
     (if (zero? x) acc
-        (recur (dec x) (* x acc)))
-    )
+        (recur (dec x) (* x acc))))
   (fact 10 1)
+
+  ;; using named fn instead of loop recur
+  (defn fact [x]
+    ((fn fact[x acc]
+       (if (zero? x) acc
+           (recur (dec x) (* x acc)))) x 1))
+  (fact 10)
+
+  ;; high order functions
+  ;; functions that take other functions as arguments
+
+  ;; fact
+  (defn fact [x]
+    (reduce * (range 1 x)))
+  (fact 10)
+  ;; curiosity why does it work for 0
+  (fact 0)
+  (*)
+  (+)
+
+  ;; count a's in a sentence
+  ;; ??? should #(%) be introduced?
+  (count (filter #(= \a %) "mama"))
+
+  ;; squares
+  (take 10 (map #(* % %) (range)))
+
 
 
   )
