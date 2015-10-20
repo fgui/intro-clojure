@@ -8,7 +8,6 @@
   ;; Expression/Forms can be send to REPL for evalutation
 
   ;; Reader Forms (forms read by reader before eval)
-
   ;; Literals
   ;; strings
   "hello world"
@@ -60,11 +59,11 @@
   ;; Evaluation
   ;; every form evaluates to itself except list.
   ;; list are evaluated as (operator operand1 operand2 ... operandn)
-  ;; An operator can be a #{function  special-form macro}
-  ;; prefix format
+  ;; An operator can be a #{function special-form macro}
+  ;; prefix notation
 
-  ;;error not a operator -> quote to stop evaluation
-  ;;??? should we talk about quote (quote (1 2 3)) '(1 2 3)
+  ;; error not a operator -> quote to stop evaluation
+  ;; ??? should we talk about quote (quote (1 2 3)) '(1 2 3)
   (1 2 3)
 
   (inc 1)
@@ -99,42 +98,20 @@
   (defn my-inc2 [x] (+ x 1))
   (macroexpand '(defn my-inc2 [x] (+ x 1)))
 
-  ;; error si no lo es
-  (1 2 3)
-  ;;
-  (inc 1)
-  (+ 1 1)
-  (+ 1 2 3 4)
-  (str "hello" " " "world")
-
-  ;; funciones anidadas
-  (inc (inc 1))
-
-  ;; los special forms i macros se evaluan de forma especial
-  ;; durante la presentación veremos la majoria de special forms
-  ;; de clojure
-
-  ;; def
-  ;; definir un symbolo hacer referencia a un valor
-  ;; def es una forma especial no se evalua como las funciones.
-  ;; more info (doc def)
-  (def answer-to-everything 42)
-  answer-to-everything
-
   ;; let
-  ;; nos permite crear symbolos referenciando valores
+  ;; evaluate expressions with bind symbols
   (let [x 1
         y 2]
     (+ x y))
 
+  ;; example "scope"
   (def x 40)
   (let [x 1] (inc x))
   (inc x)
 
   ;; do
-  ;; nos permite agrupar mas de un form
-  ;; tiene sentido sobretodo quan usamos
-  ;; forms con side effects
+  ;; do allow to group more than one expression
+  ;; used for side effects.
   ;; error
   ((+ 1 1) (+ 2 3))
   (do (+ 1 1) (+ 2 3))
@@ -227,7 +204,5 @@
 
   ;; squares
   (take 10 (map #(* % %) (range)))
-
-
 
   )
