@@ -2,34 +2,34 @@
 
 (comment
 
-  ;;; We'll attempt to learn a bit of clojure by write
-  ;;; expressions and evaluate them.
-  ;;; REPL (read eval print loop)
-  ;;; Expression/Forms can be send to REPL for evalutation
+  ;; We'll attempt to learn a bit of clojure by write
+  ;; expressions and evaluate them.
+  ;; REPL (read eval print loop)
+  ;; Expression/Forms can be send to REPL for evalutation
 
-  ;;; Reader Forms (forms read by reader before eval)
+  ;; Reader Forms (forms read by reader before eval)
 
-  ;;; Literals
-  ;;; strings
+  ;; Literals
+  ;; strings
   "hello world"
   ;; characters
   \h
   \newline
-  ;;; numbers
-  ;;; integers
+  ;; numbers
+  ;; integers
   42
   123412341234123412341234N
-  ;;; decimals
+  ;; decimals
   42.42
   123412431234.12431243213M
-  ;;; rational
+  ;; rational
   3/4
-  ;;; booleans
+  ;; booleans
   true
   false
-  ;;; nothing, null
+  ;; nothing, null
   nil
-  ;;; keywords
+  ;; keywords
   :keyword
   :color
   :key1
@@ -57,7 +57,7 @@
   ;; they can be nested
   [1 2 [3 4] {:one 1}]
 
-  ;;; Evaluation
+  ;; Evaluation
   ;; every form evaluates to itself except list.
   ;; list are evaluated as (operator operand1 operand2 ... operandn)
   ;; An operator can be a #{function  special-form macro}
