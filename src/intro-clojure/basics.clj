@@ -2,11 +2,14 @@
 
 (comment
 
+  ;;; We'll attempt to learn a bit of clojure by write
+  ;;; expressions and evaluate them.
+  ;;; REPL (read eval print loop)
+  ;;; Expression/Forms can be send to REPL for evalutation
 
-  ; Form
-  ; Reader Forms (form read by reader before eval)
+  ;;; Reader Forms (forms read by reader before eval)
 
-  ;; Literals
+  ;;; Literals
   ;;; strings
   "hello world"
   ;; characters
@@ -54,8 +57,7 @@
   ;; they can be nested
   [1 2 [3 4] {:one 1}]
 
-
-  ; Evaluation
+  ;;; Evaluation
   ;; every form evaluates to itself except list.
   ;; list are evaluated as (operator operand1 operand2 ... operandn)
   ;; An operator can be a #{function  special-form macro}
@@ -159,7 +161,7 @@
   ;; loops in clojure
   ;; loop/recur Special forms
   ;; tail recusive
-   (loop [x 10 fact 1]
+  (loop [x 10 fact 1]
     (if (zero? x) fact
         (recur (dec x) (* x fact))))
 
