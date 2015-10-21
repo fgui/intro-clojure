@@ -81,3 +81,12 @@ with def")
          (def answer-to-everything 42)
          "def is a special for that associates a name to a value"
          )
+
+(add-slide 7 "doing more than one expression
+with do.
+main use -> side effects")
+
+(comment 7
+         ((println "hello") (println "bye"))
+         (do (println "hello") (println "bye"))
+         )
