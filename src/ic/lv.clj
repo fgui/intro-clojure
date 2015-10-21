@@ -24,7 +24,7 @@
 
 (add-slide 1 "Clojure is a LISP dialect.
 -> prefix notation
--> (operator operand-1 operand-2 ... operand-n)
+-> (function param-1 param-2 ... param-n)
 example inc (3) becomes (inc 3)")
 
 (comment 1
@@ -32,7 +32,7 @@ example inc (3) becomes (inc 3)")
          (inc 3)
          ;; inc (inc (3))
          (inc (inc (3)))
-  )
+         )
 
 (add-slide 2 "If first element is not an operator
 -> error")
@@ -41,38 +41,43 @@ example inc (3) becomes (inc 3)")
          ("text" 1 3)
          )
 
-(add-slide 3 "+ or and - are just operands.
-Operators can accept different number of arguments.
+(add-slide 3 "With prefix notation
+Functions can accept different number of arguments.
 Arity is strict. Wrong arity -> Exception")
 
 (comment 3
-         (+ 1 3 4)
+         (+ 1 3 4);
          (+ 1 3)
          (+)
          +
          (source +)
          ;; error ArityException
          (inc 2 4)
-  )
+         )
 
-(add-slide 4 "Prefix notation ->
+(add-slide 4 "Nested prefix notation ->
 no need for op preference
 2 * 3 + 4 or 4 + 2 * 3 -> (+ 4 (* 2 3))")
 
 (comment 4
-  (+ 4 (* 2 3)))
+         (+ 4 (* 2 3)))
 
 (add-slide 5 "Evaluation of expressions
+Recursive -> First evaluate sub-expressions
 (+ (* 2 3) (- 5 1))
 -> (+ 6 (- 5 1))
 -> (+ 6 4)
 -> 10")
 
 (comment 5
-  (+ (* 2 3) (- 5 1))
-  )
+         (+ (* 2 3) (- 5 1))
+         )
 
-(add-slide 6 "An operators can be a:
-- Function
-- Macro
-- Special Form")
+(add-slide 6 "Naming Things
+with def")
+
+(comment 6
+         "I lied a bit went I explained that (function...)"
+         (def answer-to-everything 42)
+         "def is a special for that associates a name to a value"
+         )
