@@ -78,13 +78,14 @@ We'll attempt to learn a bit of clojure by write expressions and evaluate them o
 ```
 
 ### Evaluation
-  ;; every form evaluates to itself except list.
-  ;; list are evaluated as (operator operand1 operand2 ... operandn)
-  ;; An operator can be a #{function special-form macro}
-  ;; prefix notation
 
-  ;; error not a operator -> quote to stop evaluation
-  ;; ??? should we talk about quote (quote (1 2 3)) '(1 2 3)
+ * every form evaluates to itself except ``list``.
+ * list are evaluated as (operator operand1 operand2 ... operandn)
+ 
+ An operator can be a ``#{function special-form macro}`` prefix notation
+
+ error not a operator -> quote to stop evaluation
+ ??? should we talk about quote (quote (1 2 3)) '(1 2 3)
   
 ```lisp
   (1 2 3)
