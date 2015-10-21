@@ -77,16 +77,26 @@ Recursive -> First evaluate sub-expressions
 with def")
 
 (comment 6
-         "I lied a bit went I explained that (function...)"
+         "I lied a bit went I explained that (function...) special form"
          (def answer-to-everything 42)
          "def is a special for that associates a name to a value"
          )
 
 (add-slide 7 "doing more than one expression
 with do.
-main use -> side effects")
+main use -> side effects
+returns last value of expression")
 
 (comment 7
          ((println "hello") (println "bye"))
          (do (println "hello") (println "bye"))
+
          )
+
+(add-slide 8 "let it be... local names")
+
+(comment 8
+        (def x 10)
+        (let [x 2] (inc x))
+        (inc x)
+        )
