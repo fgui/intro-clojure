@@ -199,7 +199,23 @@
   (+)
 
   ;; count a's in a sentence
-  ;; ??? should #(%) be introduced?
+  ;; lambda syntax
+  
+  ;; a #() is the syntax for the lambda
+  (#(-> 3)) ; 3
+  
+  (#(inc %) 1) ;2
+  
+  (#(= % %) 1) ;true
+  (#(= % %) 2) ;true... always true
+  
+  ; syntax for the first, second parameter
+  (#(= %1 %2) 10 11) ;false
+  (#(= %1 %2) 10 10) ;true
+  
+  ; syntax for the first parameter
+  (#(= % %2) 10 10) ;true
+  
   (count (filter #(= \a %) "mama"))
 
   ;; squares
