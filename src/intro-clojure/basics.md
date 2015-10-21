@@ -229,4 +229,19 @@ my-inc
 ;; squares
 (take 10 (map #(* % %) (range)))
 
+;; explain map syntax
+
+;; remember
+(= 
+  (inc 1)
+  2)
+
+;;simpler
+(map inc [1 2 3])
+
+;;more difficult
+(take 10 (map inc (range)))
+
+
+
 ```
