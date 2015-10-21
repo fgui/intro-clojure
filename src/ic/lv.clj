@@ -97,6 +97,11 @@ returns last value of expression")
 
 (comment 8
         (def x 10)
-        (let [x 2] (inc x))
+        (let [x 2] (* x x))
         (inc x)
         )
+
+(add-slide 9 "from let to function fn")
+
+(comment 9
+         (fn [x] (* x x)))
