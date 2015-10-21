@@ -1,32 +1,49 @@
+# Basics
+
+
+```lisp
 (ns intro-clojure.basics)
+```
 
-(comment
+We'll attempt to learn a bit of clojure by write expressions and evaluate them on the REPL (read eval print loop)
 
-  ;; We'll attempt to learn a bit of clojure by write
-  ;; expressions and evaluate them.
-  ;; REPL (read eval print loop)
-  ;; Expression/Forms can be send to REPL for evalutation
+## Expression/Forms can be send to REPL for evalutation
 
-  ;; Reader Forms (forms read by reader before eval)
-  ;; Literals
-  ;; strings
+### Reader Forms (forms read by reader before eval)
+#### Literals
+##### strings
+
+```lisp
   "hello world"
-  ;; characters
+```
+
+##### characters
+
+```lisp
   \h
   \newline
-  ;; numbers
-  ;; integers
+```
+##### numbers
+
+```lisp
+  ;;integers
   42
   123412341234123412341234N
   ;; decimals
   42.42
   123412431234.12431243213M
-  ;; rational
+  ;; rationals
   3/4
-  ;; booleans
+```
+##### booleans
+
+```lisp
   true
   false
-  ;; nothing, null
+```
+##### nothing, null
+
+```lisp
   nil
   ;; keywords
   :keyword
@@ -37,8 +54,11 @@
   inc
   +
   hola
+```
 
-  ;; Lists
+### Lists
+
+```lisp
   ;; "," are not used do  separate elements -> white spaces instead.
   ()
   '(1 2 3)
@@ -55,8 +75,9 @@
 
   ;; they can be nested
   [1 2 [3 4] {:one 1}]
+```
 
-  ;; Evaluation
+### Evaluation
   ;; every form evaluates to itself except list.
   ;; list are evaluated as (operator operand1 operand2 ... operandn)
   ;; An operator can be a #{function special-form macro}
@@ -64,6 +85,8 @@
 
   ;; error not a operator -> quote to stop evaluation
   ;; ??? should we talk about quote (quote (1 2 3)) '(1 2 3)
+  
+```lisp
   (1 2 3)
 
   (inc 1)
@@ -205,4 +228,4 @@
   ;; squares
   (take 10 (map #(* % %) (range)))
 
-  )
+```
