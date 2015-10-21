@@ -104,4 +104,12 @@ returns last value of expression")
 (add-slide 9 "from let to function fn")
 
 (comment 9
-         (fn [x] (* x x)))
+         (fn [x] (* x x))
+         #(* %1 %1)
+         )
+
+(add-slide 10 "naming a function")
+
+(comment 10
+         (def square (fn [x] (* x x)))
+         (defn square [x] (* x x)))
