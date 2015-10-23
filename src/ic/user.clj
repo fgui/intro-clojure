@@ -9,7 +9,7 @@
   ([text]
    (add-slide (inc (apply max (keys @slides))) text )))
 
-(def sep-slide "----------------------------------------")
+(def sep-slide "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
 (defn slide
   ([] (slide @current-slide))
