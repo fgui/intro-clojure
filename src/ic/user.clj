@@ -1,4 +1,4 @@
-(ns ic.lv)
+(ns ic.user)
 
 (def current-slide (atom 1))
 (def slides (atom {}))
