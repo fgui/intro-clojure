@@ -1,7 +1,7 @@
 Intro to Clojure (w repl)
 ========================
 
-An "interactive" intro to clojure.
+A "live coding" intro to clojure.
 Usage:
 -----
 start the repl and move to namespace ic.user.
