@@ -133,7 +133,6 @@ Clojure literals for all of them
   ;; Sets
   #{}
   #{1 2 3 4}
-
   ;; they can be nested
   [1 2 [3 4] {:one 1}])
 
@@ -145,7 +144,7 @@ with def")
   (def answer-to-everything 42)
   "def is a special for that associates a name to a value")
 
-(add-slide "doing more than one expression
+(add-slide "Doing more than one expression
 with do.
 main use -> side effects
 returns last value of expression")
@@ -154,21 +153,33 @@ returns last value of expression")
   ((println "hello") (println "bye"))
   (do (println "hello") (println "bye")))
 
-(add-slide "let it be... local names")
+(add-slide "Let it be... local names")
 
 (comment
   (def x 10)
   (let [x 2] (* x x))
   (inc x))
 
-(add-slide "from let to function fn")
+(add-slide "From let to function fn")
 
 (comment
   (fn [x] (* x x))
   #(* %1 %1))
 
-(add-slide  "naming a function")
+(add-slide  "Naming a function")
 
 (comment
   (def square (fn [x] (* x x)))
   (defn square [x] (* x x)))
+
+(add-slide "Tell me the 'true':
+- false nil
+- true everything else")
+
+(add-slide "Flow control")
+
+(comment
+  (if true true false)
+  (if nil true false)
+  (if (or "" () {} :key) true false)
+  )
