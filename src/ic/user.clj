@@ -181,5 +181,54 @@ returns last value of expression")
 (comment
   (if true true false)
   (if nil true false)
-  (if (or "" () {} :key) true false)
+  (if (or "" () {} :key) true false))
+
+(add-slide "High order functions
+to replace loopy loops.
+Easier to do and read.
+- map
+- filter
+- reduce
+- iterate
+- etc")
+
+(comment
+  ;; example count the number of l's in a String
+  (count (filter #(= \l %) "hello world"))
+  (filter even? [1 2 3 4 5])
+  (map inc [0 1 2])
+  (reduce + [1 2 3 4])
+  (reduce * (range 1 10))
+  (apply * (range 1 10))
+  ;; fib-n = fib-n-2 + fib-n-1
+  (defn next-fib [[n-2 n-1]] [n-1 (+ n-1 n-2)])
+  (take 10 (map first  (iterate next-fib [0 1])))
   )
+
+(add-slide "Loopy the loop
+if you want to do something
+multiple times just do it again
+recur.")
+
+(comment
+
+  (loop [count 0 coll '(1 2 3)]
+    (if (empty? coll)
+      count
+      (recur (inc count) (rest coll))))
+
+  (defn factorial [n]
+    (if (zero? n) 1
+        (* n (fact (dec n))))
+    )
+  (factorial 10)
+
+  (loop [acc 1 fact 10]
+    (if (zero? fact)
+      acc
+      (recur (* acc fact) (dec fact))
+      )
+    )
+  )
+
+(add-slide "seq")
