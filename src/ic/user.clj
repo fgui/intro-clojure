@@ -267,6 +267,10 @@ Collections
   (conj [1 2 3] 4)
   )
 
+(add-slide "Teach to fish
+- doc, find-doc, source
+- cheatsheet, conj.io
+")
 
 (add-slide "Lots more to learn about:
 - namespaces
