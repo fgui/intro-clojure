@@ -256,9 +256,15 @@ Collections
   )
 
 
-(add-slide "We did not learn about
+(add-slide "Lots more to learn about:
+- namespaces
 - destructuring
+- metadata
+- managing state, concurrency
 - lazy-sequence
 - polimorfism (multimethods)
 - protocols, deftype, defrecord
+- macros
+- java/javascript interop
+- cljc
 - ...")
