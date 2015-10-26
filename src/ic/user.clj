@@ -155,7 +155,7 @@ Recursive -> First evaluate sub-expressions
   [1 2 [3 4] {:one 1}])
 
 (add-slide "Naming Things
-with def")
+associate values to symbols")
 
 (comment
   "I lied a bit went I explained that (function...) special form"
@@ -194,7 +194,7 @@ defn
   #(* %1 %1))
 
 (add-slide "Functions are values
-An expression can eval to a function
+A function can eval to a function
 A function can be a parameter of a function")
 
 (comment
