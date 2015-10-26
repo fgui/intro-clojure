@@ -203,6 +203,9 @@ Easier to do and read.
   ;; fib-n = fib-n-2 + fib-n-1
   (defn next-fib [[n-2 n-1]] [n-1 (+ n-1 n-2)])
   (take 10 (map first  (iterate next-fib [0 1])))
+  (take 10 (->> [0 1] (iterate next-fib) (map first)))
+  (def fibonaccis (map first  (iterate next-fib [0N 1N])) )
+  (first (drop 3 fibbonaccis))
   )
 
 (add-slide "Loopy the loop
@@ -231,4 +234,31 @@ recur.")
     )
   )
 
-(add-slide "seq")
+(add-slide "Seq
+- first
+- rest
+- empty?
+- seq
+- cons
+Collections
+- conj
+- assoc")
+
+(comment
+  (def ex-vector [:one 2 :three])
+  (first (range))
+  (second (range))
+  (take 10 (rest (range)))
+  (rest ())
+  (rest [])
+  (cons 1 [2 3 4])
+  (conj [1 2 3] 4)
+  )
+
+
+(add-slide "We did not learn about
+- destructuring
+- lazy-sequence
+- polimorfism (multimethods)
+- protocols, deftype, defrecord
+- ...")
