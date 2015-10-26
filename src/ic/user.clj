@@ -172,7 +172,7 @@ returns last value of expression")
   (def square (fn [x] (* x x)))
   (defn square [x] (* x x)))
 
-(add-slide "Tell me the 'true':
+(add-slide "Tell me the truth:
 - false nil
 - true everything else")
 
@@ -200,6 +200,7 @@ Easier to do and read.
   (reduce + [1 2 3 4])
   (reduce * (range 1 10))
   (apply * (range 1 10))
+  (defn factorial [n] (reduce * (range 1N n)))
   ;; fib-n = fib-n-2 + fib-n-1
   (defn next-fib [[n-2 n-1]] [n-1 (+ n-1 n-2)])
   (take 10 (map first  (iterate next-fib [0 1])))
@@ -208,7 +209,7 @@ Easier to do and read.
   (first (drop 3 fibbonaccis))
   )
 
-(add-slide "Loopy the loop
+(add-slide "HOF fine, but, where is my loop?
 if you want to do something
 multiple times just do it again
 recur.")
@@ -220,18 +221,29 @@ recur.")
       count
       (recur (inc count) (rest coll))))
 
-  (defn factorial [n]
-    (if (zero? n) 1
-        (* n (fact (dec n))))
-    )
-  (factorial 10)
 
-  (loop [acc 1 fact 10]
-    (if (zero? fact)
-      acc
-      (recur (* acc fact) (dec fact))
-      )
-    )
+
+  (defn factorial [n]
+    (if (zero? n) 1N
+        (* n (factorial (dec n)))))
+  (factorial 1000)
+
+  (factorial 10000)
+  ;;stackoverflow
+
+
+  (defn factorial-helper [acc n]
+    (if (zero? n) acc
+        (recur (* acc n) (dec n))))
+
+  ;; with partial
+  (def factorial4 (partial factorial-helper 1N))
+
+  (defn factorial5 [n]
+    (loop [acc 1N fact n]
+      (if (zero? fact)
+        acc
+        (recur (* acc fact) (dec fact)))))
   )
 
 (add-slide "Seq
