@@ -25,29 +25,45 @@
 (def sl slide)
 (def nsl next-slide)
 
-(add-slide 1 "Clojure is a LISP dialect.
--> prefix notation
--> (function param-1 param-2 ... param-n)
-example inc (3) becomes (inc 3)")
+(add-slide 1 "Parenthesis nightmare?
+(((())))(((((((((())))))))))")
 
 (comment
   ;; inc (3)
-  (inc 3)
-  ;; inc (inc (3))
-  (inc (inc (3))))
+  (println "hola"))
 
-(add-slide "If first element is not an operator
+(add-slide "Functions first followed by parameters
+(function param-1 param-2 ... param-n)")
+
+(comment
+  (str "hola" "mundo")
+  )
+
+
+(add-slide "First element not a function
 -> error")
 
 (comment
+  (1 2 3)
   ("text" 1 3))
 
-(add-slide "With prefix notation
-Functions can accept different number of arguments.
-Arity is strict. Wrong arity -> Exception")
+(add-slide "Math ops are functions
+therefore they go at beginning")
+
+(comment
+  (- 4 3)
+  (- 4 3 1)
+  (+ 4 5)
+  (+ 1)
+  (+)
+  )
+
+(add-slide "with prefix notation
+- functions can accept different number of arguments.")
 
 (comment
   (+ 1 3 4)
+  (< 1 2 3 4)
   (+ 1 3)
   (+)
   +
@@ -55,8 +71,8 @@ Arity is strict. Wrong arity -> Exception")
   ;; error ArityException
   (inc 2 4))
 
-(add-slide "Nested prefix notation ->
-no need for op preference
+(add-slide "with prefix notation
+- no need to have order of application for operators
 2 * 3 + 4 or 4 + 2 * 3 -> (+ 4 (* 2 3))")
 
 (comment
@@ -64,21 +80,23 @@ no need for op preference
 
 (add-slide "Evaluation of expressions
 Recursive -> First evaluate sub-expressions
-(+ (* 2 3) (- 5 1))
--> (+ 6 (- 5 1))
--> (+ 6 4)
--> 10")
+(+ (* 2 3) 5)
+-> (+ 6 5)
+-> 11")
 
 (comment
-  (+ (* 2 3) (- 5 1)))
+  (+ (* 2 3) 5))
 
-(add-slide "Basic/Simple types.
-- numbers 2 2N 1.2 1.2M 3/4
+(add-slide "Types. Usual suspects
+- numbers 2 1.2
 - \"strings\", \\c \\h \\a \\r \\s
-- boolean true false
-- nil
-- :keyword
-- symbols (vars)")
+- boolean true false")
+
+(add-slide "More types
+- Big numbers, ratios
+- :keywords
+- symbols
+- nil possible value of any data type")
 
 (comment
   ;; Reader Forms (forms read by reader before eval)
@@ -111,12 +129,12 @@ Recursive -> First evaluate sub-expressions
   +
   hola)
 
-(add-slide "Collection/Containers of types
-Clojure literals for all of them
-- List (1 \"three\" \a)
+(add-slide "Collection
+(with literal syntax)
 - Vector []
 - Map {:key 123}
-- Set #{\\a 2 2/3}")
+- Set #{\\a 2 2/3}
+- List (1 \"three\" \\a)")
 
 (comment
   ;; Lists
@@ -142,67 +160,99 @@ with def")
 (comment
   "I lied a bit went I explained that (function...) special form"
   (def answer-to-everything 42)
+  (def pi 3.14)
   "def is a special for that associates a name to a value")
 
 (add-slide "Doing more than one expression
 with do.
 main use -> side effects
-returns last value of expression")
+evaluates to the evaluation of the last expression")
 
 (comment
-  ((println "hello") (println "bye"))
-  (do (println "hello") (println "bye")))
+  ((println "hello") 4)
+  (do (println "hello") 4))
 
 (add-slide "Let it be... local names")
 
 (comment
-  (def x 10)
-  (let [x 2] (* x x))
-  (inc x))
+  (let [pi 355/113] pi)
+  pi)
 
-(add-slide "From let to function fn")
-
-(comment
-  (fn [x] (* x x))
-  #(* %1 %1))
-
-(add-slide  "Naming a function")
+(add-slide "Functions
+fn
+defn
+")
 
 (comment
   (def square (fn [x] (* x x)))
-  (defn square [x] (* x x)))
+  (square 3)
+  ;; evaluation
+  ;; functions are nothing else than values
+  ((fn [x] (* x x)) 3)
+  (* 3 3)
+
+  #(* %1 %1))
+
+(add-slide "Functions are values
+An expression can eval to a function
+A function can be a parameter of a function")
+
+(comment
+  (defn apply-twice [f]
+    (fn [x] (f (f x)))
+    )
+
+  ((apply-twice square) 2)
+  )
+
+(add-slide "Flow control
+if
+cond")
+
+(comment
+  (if (zero? 0) "cero" "otro")
+
+  )
 
 (add-slide "Tell me the truth:
 - false nil
 - true everything else")
-
-(add-slide "Flow control")
 
 (comment
   (if true true false)
   (if nil true false)
   (if (or "" () {} :key) true false))
 
-(add-slide "High order functions
-to replace loopy loops.
-Easier to do and read.
+(add-slide "Higher-order function
+frequently used in clojure
 - map
+    [a a a] fun -> [(fun a) (fun a) (fun a)]
 - filter
+    [a b a] a? -> [a a]
 - reduce
+    [a b c] fun -> (fun (fun a b) c)
 - iterate
+    fun a -> [(fun a) (fun (fun a)) (fun (fun (fun a))) ...]
 - etc")
 
 (comment
-  ;; example count the number of l's in a String
-  (count (filter #(= \l %) "hello world"))
-  (filter even? [1 2 3 4 5])
-  (map inc [0 1 2])
-  (reduce + [1 2 3 4])
-  (reduce * (range 1 10))
-  (apply * (range 1 10))
+
+  (map square [1 2 3 4])
+
+  (filter even? [1 2 3 4])
+
+  (defn factorial [n] (reduce * (range 1N n)))
+  (factorial 10000)
+
+  (reduce #(update %1 %2 (fnil inc 0)) {} "agatta")
+
+  (frequencies "agatta")
+
+
   (defn factorial [n] (reduce * (range 1N n)))
   ;; fib-n = fib-n-2 + fib-n-1
   (defn next-fib [[n-2 n-1]] [n-1 (+ n-1 n-2)])
+
   (take 10 (map first  (iterate next-fib [0 1])))
   (take 10 (->> [0 1] (iterate next-fib) (map first)))
   (def fibonaccis (map first  (iterate next-fib [0N 1N])) )
@@ -254,7 +304,8 @@ recur.")
 - cons
 Collections
 - conj
-- assoc")
+- assoc
+- update")
 
 (comment
   (def ex-vector [:one 2 :three])
@@ -278,7 +329,7 @@ Collections
 - metadata
 - managing state, concurrency
 - lazy-sequence
-- polimorfism (multimethods)
+- polymorphism (multimethods)
 - protocols, deftype, defrecord
 - macros
 - java/javascript interop
