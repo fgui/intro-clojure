@@ -196,7 +196,10 @@ do evaluates to the evaluation of the last expression")
 
   #(* %1 %1))
 
-(add-slide "Functions are values
+(add-slide "Important!!
+Functions are values")
+
+(add-slide "High-order functions
 A function can eval to a function
 A function can be a parameter of a function")
 
@@ -208,23 +211,8 @@ A function can be a parameter of a function")
   ((apply-twice square) 2)
   )
 
-(add-slide "Flow control")
 
-(comment
-  (if (zero? 0) "cero" "otro")
-
-  )
-
-(add-slide "Tell me the truth:
-- false nil
-- true everything else")
-
-(comment
-  (if true true false)
-  (if nil true false)
-  (if (or "" () {} :key) true false))
-
-(add-slide "Higher-order function
+(add-slide "Higher-order functions
 frequently used in clojure
 - map
     [a a a] fun -> [(fun a) (fun a) (fun a)]
@@ -260,18 +248,31 @@ frequently used in clojure
   (first (drop 3 fibbonaccis))
   )
 
+(add-slide "Flow control")
+
+(comment
+  (if (zero? 0) "cero" "otro")
+)
+
+(add-slide "Tell me the truth:
+- false nil
+- true everything else")
+
+(comment
+  (if true true false)
+  (if nil true false)
+  (if (or "" () {} :key) true false))
+
+
 (add-slide "Higher-order functions are fine,
 but where is my loop?
 recur-it.")
 
 (comment
-
   (loop [count 0 coll '(1 2 3)]
     (if (empty? coll)
       count
       (recur (inc count) (rest coll))))
-
-
 
   (defn factorial [n]
     (if (zero? n) 1N
@@ -280,7 +281,6 @@ recur-it.")
 
   (factorial 10000)
   ;;stackoverflow
-
 
   (defn factorial-helper [acc n]
     (if (zero? n) acc
@@ -318,7 +318,7 @@ Collections
   (conj [1 2 3] 4)
   )
 
-(add-slide "Teach it to fish
+(add-slide "Teaching to fish
 - doc, find-doc, source
 - cheatsheet, conj.io")
 
