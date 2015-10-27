@@ -25,14 +25,21 @@
 (def sl slide)
 (def nsl next-slide)
 
-(add-slide 1 "Parenthesis nightmare?
-(((())))(((((((((())))))))))")
+(add-slide 1 "Parenthesis hell ?
+
+((  ))  ((()))  ()      ()
+((  ))  ()      ()      ()
+((()))  ((()))  ()      ()
+((  ))  ()      ()      ()
+((  ))  ((()))  ((()))  ((()))
+")
 
 (comment
   ;; inc (3)
   (println "hola"))
 
-(add-slide "Functions first followed by parameters
+(add-slide "First things first:
+First function followed by parameters
 (function param-1 param-2 ... param-n)")
 
 (comment
@@ -40,15 +47,14 @@
   )
 
 
-(add-slide "First element not a function
--> error")
+(add-slide "(not-a-function bla bla) -> Good try but try again!")
 
 (comment
   (1 2 3)
   ("text" 1 3))
 
-(add-slide "Math ops are functions
-therefore they go at beginning")
+(add-slide "Math operands are functions
+and functions FIRST")
 
 (comment
   (- 4 3)
@@ -58,7 +64,7 @@ therefore they go at beginning")
   (+)
   )
 
-(add-slide "with prefix notation
+(add-slide "Life is easy with prefix notation
 - functions can accept different number of arguments.")
 
 (comment
@@ -71,15 +77,14 @@ therefore they go at beginning")
   ;; error ArityException
   (inc 2 4))
 
-(add-slide "with prefix notation
-- no need to have order of application for operators
+(add-slide "Life is easy with prefix notation
+- no need to have order of application for math operators
 2 * 3 + 4 or 4 + 2 * 3 -> (+ 4 (* 2 3))")
 
 (comment
   (+ 4 (* 2 3)))
 
 (add-slide "Evaluation of expressions
-Recursive -> First evaluate sub-expressions
 (+ (* 2 3) 5)
 -> (+ 6 5)
 -> 11")
@@ -87,12 +92,12 @@ Recursive -> First evaluate sub-expressions
 (comment
   (+ (* 2 3) 5))
 
-(add-slide "Types. Usual suspects
+(add-slide "Types. The usual suspects
 - numbers 2 1.2
 - \"strings\", \\c \\h \\a \\r \\s
 - boolean true false")
 
-(add-slide "More types
+(add-slide "More 'types'
 - Big numbers, ratios
 - :keywords
 - symbols
@@ -155,7 +160,7 @@ Recursive -> First evaluate sub-expressions
   [1 2 [3 4] {:one 1}])
 
 (add-slide "Naming Things
-associate values to symbols")
+associates values to symbols")
 
 (comment
   "I lied a bit went I explained that (function...) special form"
@@ -166,7 +171,7 @@ associate values to symbols")
 (add-slide "Doing more than one expression
 with do.
 main use -> side effects
-evaluates to the evaluation of the last expression")
+do evaluates to the evaluation of the last expression")
 
 (comment
   ((println "hello") 4)
@@ -259,10 +264,9 @@ frequently used in clojure
   (first (drop 3 fibbonaccis))
   )
 
-(add-slide "HOF fine, but, where is my loop?
-if you want to do something
-multiple times just do it again
-recur.")
+(add-slide "Higher-order functions are fine,
+but where is my loop?
+recur-it.")
 
 (comment
 
@@ -318,7 +322,7 @@ Collections
   (conj [1 2 3] 4)
   )
 
-(add-slide "Teach to fish
+(add-slide "Teach it to fish
 - doc, find-doc, source
 - cheatsheet, conj.io
 ")
