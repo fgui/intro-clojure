@@ -47,7 +47,8 @@ First function followed by parameters
   )
 
 
-(add-slide "(not-a-function bla bla) -> Good try but try again!")
+(add-slide "(not-a-function bla bla)
+  -> Good try but try again!")
 
 (comment
   (1 2 3)
@@ -183,10 +184,7 @@ do evaluates to the evaluation of the last expression")
   (let [pi 355/113] pi)
   pi)
 
-(add-slide "Functions
-fn
-defn
-")
+(add-slide "From let to Functions")
 
 (comment
   (def square (fn [x] (* x x)))
@@ -210,9 +208,7 @@ A function can be a parameter of a function")
   ((apply-twice square) 2)
   )
 
-(add-slide "Flow control
-if
-cond")
+(add-slide "Flow control")
 
 (comment
   (if (zero? 0) "cero" "otro")
@@ -237,7 +233,7 @@ frequently used in clojure
 - reduce
     [a b c] fun -> (fun (fun a b) c)
 - iterate
-    fun a -> [(fun a) (fun (fun a)) (fun (fun (fun a))) ...]
+    fun a -> [(fun a) (fun (fun a)) ...]
 - etc")
 
 (comment
@@ -324,8 +320,7 @@ Collections
 
 (add-slide "Teach it to fish
 - doc, find-doc, source
-- cheatsheet, conj.io
-")
+- cheatsheet, conj.io")
 
 (add-slide "Lots more to learn about:
 - namespaces
